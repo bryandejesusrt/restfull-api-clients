@@ -1,0 +1,109 @@
+openapi: 3.0.1
+info:
+  title: API de Gestión de Clientes
+  description: >
+    Esta API permite gestionar la información de los clientes de la empresa, incluyendo operaciones como la creación, obtención, actualización y eliminación de clientes.
+    Además, se integra con un servicio externo para obtener información de países. La API sigue principios RESTful y proporciona documentación clara para facilitar su uso.
+  version: 1.0.0
+  contact:
+    name: Bryan de Jesús Rosa Tavarez
+    email: bryandejesusrt@gmail.com
+    url: https://bryandejesusrt.dev
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths:
+  /clientes:
+    get:
+      summary: Obtener todos los clientes
+      description: >
+        Obtiene una lista con todos los clientes registrados en el sistema.
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Crear un nuevo cliente
+      description: >
+        Crea un nuevo cliente en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+  /clientes/{id}:
+    get:
+      summary: Obtener un cliente por ID
+      description: >
+        Obtiene la información de un cliente específico a partir de su ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID del cliente
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente no encontrado
+    put:
+      summary: Actualizar un cliente
+      description: >
+        Actualiza la información de un cliente específico a partir de su ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID del cliente
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente no encontrado
+    delete:
+      summary: Eliminar un cliente
+      description: >
+        Elimina un cliente específico a partir de su ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID del cliente
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente eliminado
+        '404':
+          description: Cliente no encontrado

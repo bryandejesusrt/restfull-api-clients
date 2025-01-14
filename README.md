@@ -1,4 +1,5 @@
 # API RestFull con Quarkus ⚙️
+_He desarrollado este proyecto teniendo en cuenta un entorno bancario, escribiendo código diseñado para ser robusto, seguro y escalable._
 
 ## Introducción
 
@@ -70,27 +71,21 @@ Service --> BusinessValidator[Business Validator]
 
 end
 
-  
 
-subgraph Security
-
-AuthFilter[Auth Filter] --> Controller
-
-RateLimiter[Rate Limiter] --> Controller
-
-end
-
-  
-
-subgraph Monitoring
-
-HealthCheck[Health Check] --> Service
-
-Metrics[Metrics] --> Service
-
-end
 
 ```
+
+
+subgraph Security
+AuthFilter[Auth Filter] --> Controller
+RateLimiter[Rate Limiter] --> Controller
+end 
+
+
+subgraph Monitoring
+HealthCheck[Health Check] --> Service
+Metrics[Metrics] --> Service
+end
 
 ## 4. 🔍 Tecnologías Utilizadas
 
@@ -209,7 +204,7 @@ cd restfull-api-clients
 
 2️⃣ **Configurar variables de entorno**
 
-Crea un archivo .env en el directorio raíz y define las variables necesarias para la configuración del proyecto. Por ejemplo:
+Crea un archivo .env en el directorio raíz y define las siguientes variables que son necesarias para la configuración del proyecto:
 
  
 ``` env
@@ -250,25 +245,28 @@ Asegúrate de que los contenedores estén corriendo correctamente:
 ```bash
 docker ps
 ```
----
 
 # 8. 🏃‍➡️Ejecución del Proyecto
 
 5️⃣ **Ejecutar la Aplicación**
 
-Una vez que la base de datos esté corriendo, ejecuta la aplicación con:
+Una vez que la base de datos esté corriendo, primero instala las dependenias y luego ejecuta la aplicación con:
 ```bash
-java -jar target/client-api-1.0.0.jar
+  mvn clean install
+  mvn clean compile quarkus:dev
 ```
 Esto iniciará el servidor en el puerto configurado en las variables de entorno (por defecto, 8080).
+
+## como iniciar la imagen de docker
+
 
 6️⃣ **Acceder a la API**
 
 Puedes probar los endpoints de la API accediendo a:
 
-**Documentación Swagger**:
+**Documentación de la API**:
 
-`http://localhost:8080/swagger-ui.html`
+`http://localhost:8080/documentation`
 
 
 
@@ -282,6 +280,8 @@ La API cuenta con los siguientes recursos principales:
 
 - `GET /clients`: Obtener todos los clientes.
 
+- `GET /client/clientId`: Obtener un cliente por su identificador
+
 - `POST /clients`: Crear un nuevo cliente.
 
 - `PUT /clients/{id}`: Actualizar un cliente existente.
@@ -290,7 +290,8 @@ La API cuenta con los siguientes recursos principales:
 
 - `/countries`:
 
-- `GET /countries`: Obtener todos los países.
+- `GET /country/{countryCode}`: Obtener todos los países de un pais especifico. **(código ISO 3166:DO)**
+
 
 
 ### 🌐 Flujo de Peticiones HTTP (Endpoints)
@@ -359,13 +360,16 @@ C -->|2.4 Valida| R
 Para ejecutar las pruebas del proyecto, utiliza:
 
 ```bash
-./mvnw test
+mnv test
 ```
 
  1. Las pruebas incluyen:
  - Unitarias: Validación de métodos individuales.
  - Integración: Verificación de endpoints y conexión con la base de
    datos.
+
+## Metricas
+
 
 ## 11. 📄 Agradecimientos
 

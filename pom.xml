@@ -79,6 +79,15 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-flyway</artifactId>
         </dependency>
+        <!-- Rate Limit -->
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-fault-tolerance</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
+        </dependency>
         <!-- Testing -->
        <dependency>
             <groupId>io.quarkus</groupId>
@@ -106,23 +115,19 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
-       
-    
         <!-- Metricts -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-core</artifactId>
-            <version>1.11.2</version>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
         </dependency>
         <!-- OpenApi -->
         <dependency>
             <groupId>org.eclipse.microprofile.metrics</groupId>
             <artifactId>microprofile-metrics-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
