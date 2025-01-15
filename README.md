@@ -377,7 +377,8 @@ Este proyecto fue desarrollado como parte de un proceso de reclutamiento y para 
 
 Agradezco a todas las personas y recursos que contribuyeron a este aprendizaje, incluyendo cursos y documentación oficial😅.
 
-image
+![image](https://github.com/user-attachments/assets/d9007724-bae1-41a7-8146-8e9ecbbf50b8)
+
 
 ---
 
