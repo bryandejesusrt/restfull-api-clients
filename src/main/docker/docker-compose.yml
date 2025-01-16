@@ -54,3 +54,5 @@ volumes:
 
 networks:
   development:
+    driver: bridge
+  

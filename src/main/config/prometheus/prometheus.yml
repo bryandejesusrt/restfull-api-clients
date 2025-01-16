@@ -3,8 +3,18 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'quarkus-clients-api'
+  - job_name: 'prometheus'
+    scrape_interval: 5s
     static_configs:
-      - targets: ['http://localhost:8080']
-    metrics_path: 'metrics'
-    scheme: http
+      - targets: ['localhost:9090']
+  
+  - job_name: 'quarkus-app'
+    scrape_interval: 5s
+    metrics_path: '/q/metrics'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+
+    dns_sd_configs:
+      []
+    relabel_configs:
+      []
